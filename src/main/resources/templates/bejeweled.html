@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Bejeweled</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="/css/stylesheet.css"/>
+</head>
+<body>
+
+<h2>Welcome to <a href="/">Gamestudio</a>!</h2>
+<h2>Bejeweled</h2>
+<br> <br>
+
+<div th:if="${@userController.logged}">
+    <a th:href="@{'/bejeweled/start/'}">Start Game</a>
+    <br><br>
+<table>
+    <tr th:each="i, iter1: ${array}">
+        <td th:each="item, iter2: ${i}">
+            <a th:href="@{'/bejeweled/click/' + ${iter1.index}  + '/' + ${iter2.index}}"><span th:text="${item}"></span ></a>
+
+        </td>
+    <tr>
+</table>
+    Score: <span th:text="${actualScore}"></span>
+</div>
+<br><br>
+
+<h2>Scores</h2>
+<ol>
+    <li th:each="score : ${scores}">
+        <span th:text="${score.player}"></span>
+        <span th:text="${score.points}"></span>
+    </li>
+</ol>
+
+<h2>Comments</h2>
+<ol>
+    <li th:each="comment : ${comment}">
+        <span th:text="${comment.player}"></span>
+        <span th:text="${comment.comment}"></span>
+    </li>
+</ol>
+<div th:if="${@userController.logged}">
+<form action="#" th:action="@{/bejeweled/fooform}" th:object="${command}" method="post">
+    <span>Comment this game: <input type="text" th:field="*{textField}" /></span>
+    <button type="submit">Vložiť</button>
+</form>
+</div>
+
+<h2>Rating</h2>
+<ol>
+    <li>durky: <span th:text="${rating1}"></span></li>
+    <li>tono : <span th:text="${rating2}"></span></li>
+    <li>peter: <span th:text="${rating3}"></span></li>
+</ol>
+AVG rating: <span th:text="${AVGrating}"></span>
+<br><br>
+<div th:if="${@userController.logged}">
+    Rating:
+    <a href="/bejeweled/1">*</a>
+    <a href="/bejeweled/2">*</a>
+    <a href="/bejeweled/3">*</a>
+    <a href="/bejeweled/4">*</a>
+    <a href="/bejeweled/5">*</a>
+    <br><br>
+    <a th:href="@{'/bejeweled/new/'}">New Game</a>
+</div>
+
+</body>
+</html>

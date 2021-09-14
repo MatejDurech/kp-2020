@@ -1,0 +1,11 @@
+POST http://localhost:8080/api/score
+
+
+Content-Type: application/json
+{
+  "game": "bejeweled",
+  "player": "tomas",
+  "points": 300,
+  "playedOn": "2020-04-20 01:36:07.132000"
+}
+###
